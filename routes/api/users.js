@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const gravatar = require('gravatar');
 const { check, validationResult } = require('express-validator/check');
+const bcrypt = require('bcryptjs');
 
 // Load User model
 const User = require('../../models/User');
@@ -33,17 +35,34 @@ router.post(
     try {
       // See if user already exists
       let user = await User.findOne({ email });
-
       if (user) {
-        res.status(400).send({ errors: [{ msg: 'User already exists' }] });
+        return res
+          .status(400)
+          .send({ errors: [{ msg: 'User already exists' }] });
       }
       // Get user's avatar
+      const avatar = gravatar.url(email, {
+        s: '200',
+        r: 'pg',
+        d: 'mm'
+      });
 
+      // Create instance of new User. This is making an instance, but is it not saved yet.
+      user = new User({
+        name,
+        email,
+        password,
+        avatar
+      });
       // Encrypt password
+      const salt = await bcrypt.genSalt(10);
 
+      user.password = await bcrypt.hash(password, salt);
+
+      await user.save();
       // Return JWT
 
-      res.send('User route');
+      res.send('User registered');
     } catch (err) {
       console.log(err.message);
       res.status(500).send('Server error');
