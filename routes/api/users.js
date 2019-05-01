@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const { check, validationResult } = require('express-validator/check');
 
+// Load User model
+const User = require('../../models/User');
+
 // @route   POST /api/users
 // @desc    Register user
 // @access  Public
@@ -18,12 +21,33 @@ router.post(
       'Please enter a password with 6 or more characters'
     ).isLength({ min: 6 })
   ],
-  (req, res) => {
+  async (req, res) => {
+    // Check validation
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    res.send('User route');
+
+    const { name, email, password } = req.body;
+
+    try {
+      // See if user already exists
+      let user = await User.findOne({ email });
+
+      if (user) {
+        res.status(400).send({ errors: [{ msg: 'User already exists' }] });
+      }
+      // Get user's avatar
+
+      // Encrypt password
+
+      // Return JWT
+
+      res.send('User route');
+    } catch (err) {
+      console.log(err.message);
+      res.status(500).send('Server error');
+    }
   }
 );
 
