@@ -9,7 +9,8 @@ const UserSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
+    lowercase: true
   },
   password: {
     type: String,
@@ -24,5 +25,5 @@ const UserSchema = new mongoose.Schema({
   }
 });
 
-// Export as a variable called User. The model name is user which uses the UserSchema
+// Export as a variable called User. The model name is user which which will be the collection on MongoDB. References our schema
 module.exports = User = mongoose.model('user', UserSchema);
