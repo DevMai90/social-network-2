@@ -1,7 +1,10 @@
 import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { login } from '../../actions/auth';
 
-const Login = () => {
+const Login = ({ login }) => {
   // formData is the name of state. setFormData will be used to specifically update formData
   const [formData, setFormData] = useState({
     email: '',
@@ -16,7 +19,7 @@ const Login = () => {
   const onSubmit = e => {
     e.preventDefault();
 
-    console.log(formData);
+    login(email, password);
   };
   return (
     <Fragment>
@@ -52,4 +55,11 @@ const Login = () => {
   );
 };
 
-export default Login;
+Login.propTypes = {
+  login: PropTypes.func.isRequired
+};
+
+export default connect(
+  null,
+  { login }
+)(Login);
