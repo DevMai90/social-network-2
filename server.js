@@ -6,7 +6,7 @@ const app = express();
 // Connect Database
 connectDB();
 
-// Initialize bodyparser middleware
+// Initialize bodyparser middleware. Allows us to get data from req.body
 app.use(express.json({ extended: false }));
 
 app.get('/', (req, res) => res.send('API Running'));
