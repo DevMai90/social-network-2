@@ -13,7 +13,7 @@ const Experience = ({ experience }) => {
         {exp.to === null ? (
           ' Now'
         ) : (
-          <Moment format="YYYY/MM.DD">{exp.to}</Moment>
+          <Moment format="YYYY/MM/DD">{exp.to}</Moment>
         )}
       </td>
       <td>
