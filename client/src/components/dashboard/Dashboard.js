@@ -1,6 +1,7 @@
 import React, { useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import DashboardActions from './DashboardActions';
+import Experience from './Experience';
 import Spinner from '../layout/Spinner';
 import { connect } from 'react-redux';
 import { getCurrentProfile } from '../../actions/profile';
@@ -26,6 +27,7 @@ const Dashboard = ({
       {profile !== null ? (
         <Fragment>
           <DashboardActions />
+          <Experience experience={profile.experience} />
         </Fragment>
       ) : (
         <Fragment>
