@@ -228,6 +228,40 @@ router.put(
   }
 );
 
+// @route   PUT api/profile/experience/:exp_id
+// @desc    Update profile experience by ID
+// @access   Private
+router.put('/experience/:exp_id', auth, async (req, res) => {
+  const { title, company, location, from, to, current, description } = req.body;
+
+  const updatedExp = {
+    title,
+    company,
+    location,
+    from,
+    to,
+    current,
+    description
+  };
+
+  try {
+    let profile = await Profile.findOne({ user: req.user.id });
+
+    const updateIndex = profile.experience
+      .map(item => item.id)
+      .indexOf(req.params.exp_id);
+
+    profile.experience.splice(updateIndex, 1, updatedExp);
+
+    await profile.save();
+
+    res.json(profile.experience);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send('Server Error');
+  }
+});
+
 // @route   DELETE api/profile/experience/:exp_id
 // @desc    Delete profile experience
 // @access  Private
