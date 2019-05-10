@@ -228,9 +228,27 @@ router.put(
   }
 );
 
+// @route   GET api/profile/experience/:exp_id
+// @desc    Get profile experience by ID
+// @access  Private
+router.get('/experience/:exp_id', auth, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id });
+
+    const expIndex = profile.experience
+      .map(item => item._id.toString())
+      .indexOf(req.params.exp_id);
+
+    res.json(profile.experience[expIndex]);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send('Server Error');
+  }
+});
+
 // @route   PUT api/profile/experience/:exp_id
 // @desc    Update profile experience by ID
-// @access   Private
+// @access  Private
 router.put('/experience/:exp_id', auth, async (req, res) => {
   const { title, company, location, from, to, current, description } = req.body;
 
@@ -245,7 +263,7 @@ router.put('/experience/:exp_id', auth, async (req, res) => {
   };
 
   try {
-    let profile = await Profile.findOne({ user: req.user.id });
+    const profile = await Profile.findOne({ user: req.user.id });
 
     const updateIndex = profile.experience
       .map(item => item.id)
