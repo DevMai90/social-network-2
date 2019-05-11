@@ -4,7 +4,8 @@ import {
   CLEAR_PROFILE,
   UPDATE_PROFILE,
   GET_PROFILES,
-  GET_REPOS
+  GET_REPOS,
+  GET_EXPERIENCE
 } from '../actions/types';
 
 const initialState = {
@@ -12,7 +13,8 @@ const initialState = {
   profiles: [],
   repos: [],
   loading: true,
-  error: {}
+  error: {},
+  experience: null
 };
 
 export default function(state = initialState, action) {
@@ -30,6 +32,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         profiles: payload,
+        loading: false
+      };
+    case GET_EXPERIENCE:
+      return {
+        ...state,
+        experience: payload,
         loading: false
       };
     case GET_REPOS:
