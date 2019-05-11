@@ -14,7 +14,7 @@ const initialState = {
   repos: [],
   loading: true,
   error: {},
-  experience: null
+  experience: {}
 };
 
 export default function(state = initialState, action) {
@@ -57,7 +57,8 @@ export default function(state = initialState, action) {
         ...state,
         profile: null,
         reports: [],
-        loading: false
+        loading: false,
+        experience: {}
       };
     default:
       return state;
