@@ -62,7 +62,9 @@ const EditExperience = ({
           <h1 className="large text-primary">Edit Experience</h1>
           <p className="lead">
             <i className="fas fa-code-branch" /> Edit your past experience at{' '}
-            {experience.company}
+            <span className="text-primary">
+              <strong>{experience.company}</strong>
+            </span>
           </p>
           <small>* = required field</small>
           <form className="form" onSubmit={e => onSubmit(e)}>

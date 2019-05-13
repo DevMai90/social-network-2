@@ -236,7 +236,7 @@ router.get('/experience/:exp_id', auth, async (req, res) => {
     const profile = await Profile.findOne({ user: req.user.id });
 
     const expIndex = profile.experience
-      .map(item => item._id.toString())
+      .map(item => item.id)
       .indexOf(req.params.exp_id);
 
     res.json(profile.experience[expIndex]);
@@ -274,6 +274,24 @@ router.put('/experience/:exp_id', auth, async (req, res) => {
     await profile.save();
 
     res.json(profile);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route   GET api/profile/education/:edu_id
+// @desc    Get profile education by ID
+// @access  Private
+router.get('/education/:edu_id', auth, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id });
+
+    const eduIndex = profile.education
+      .map(item => item.id)
+      .indexOf(req.params.edu_id);
+
+    res.json(profile.education[eduIndex]);
   } catch (err) {
     console.log(err);
     res.status(500).send('Server Error');

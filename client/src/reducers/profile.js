@@ -6,7 +6,8 @@ import {
   GET_PROFILES,
   GET_REPOS,
   GET_EXPERIENCE,
-  UPDATE_EXPERIENCE
+  UPDATE_EXPERIENCE,
+  UPDATE_EDUCATION
 } from '../actions/types';
 
 const initialState = {
@@ -15,7 +16,8 @@ const initialState = {
   repos: [],
   loading: true,
   error: {},
-  experience: {}
+  experience: {},
+  education: {}
 };
 
 export default function(state = initialState, action) {
@@ -25,11 +27,13 @@ export default function(state = initialState, action) {
     case GET_PROFILE:
     case UPDATE_PROFILE:
     case UPDATE_EXPERIENCE:
+    case UPDATE_EDUCATION:
       return {
         ...state,
         profile: payload,
         loading: false,
-        experience: {}
+        experience: {},
+        education: {}
       };
     case GET_PROFILES:
       return {
@@ -41,6 +45,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         experience: payload,
+        loading: false
+      };
+    case GET_EDUCATION:
+      return {
+        ...state,
+        education: payload,
         loading: false
       };
     case GET_REPOS:

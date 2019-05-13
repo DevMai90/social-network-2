@@ -10,7 +10,9 @@ import {
   GET_PROFILES,
   GET_REPOS,
   GET_EXPERIENCE,
-  UPDATE_EXPERIENCE
+  UPDATE_EXPERIENCE,
+  GET_EDUCATION,
+  UPDATE_EDUCATION
 } from './types';
 
 // Get current user's profile
@@ -223,12 +225,28 @@ export const deleteEducation = id => async dispatch => {
     });
   }
 };
+
 // Get Experience by ID
 export const getExperience = id => async dispatch => {
   try {
     const res = await axios.get(`/api/profile/experience/${id}`);
     dispatch({
       type: GET_EXPERIENCE,
+      payload: res.data
+    });
+  } catch (err) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+
+// Get Education by ID
+export const getEducation = id => async dispatch => {
+  try {
+    const res = await axios.get(`/api/profile/education/${id}`);
+    dispatch({
+      type: GET_EDUCATION,
       payload: res.data
     });
   } catch (err) {
