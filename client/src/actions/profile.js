@@ -240,6 +240,7 @@ export const getExperience = id => async dispatch => {
       payload: { msg: err.response.statusText, status: err.response.status }
     });
   }
+};
 
 // Get Education by ID
 export const getEducation = id => async dispatch => {

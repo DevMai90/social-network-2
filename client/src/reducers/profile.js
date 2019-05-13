@@ -7,7 +7,8 @@ import {
   GET_REPOS,
   GET_EXPERIENCE,
   UPDATE_EXPERIENCE,
-  UPDATE_EDUCATION
+  UPDATE_EDUCATION,
+  GET_EDUCATION
 } from '../actions/types';
 
 const initialState = {
