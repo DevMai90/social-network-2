@@ -9,3 +9,4 @@ Expanded on the application with the following:
 - Added Edit Experience functionality and routes.
 - Added Edit Education functionality and routes.
 - Added alerts after updating experience/education.
+- Sorted education and experience by current status first followed by past experience/education in descending order.

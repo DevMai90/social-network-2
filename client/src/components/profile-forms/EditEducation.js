@@ -100,7 +100,7 @@ const EditEducation = ({
             <div className="form-group">
               <input
                 type="text"
-                placeholder="Field of Study"
+                placeholder="* Field of Study"
                 name="fieldOfStudy"
                 value={fieldOfStudy}
                 onChange={e => onChange(e)}

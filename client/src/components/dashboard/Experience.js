@@ -6,7 +6,17 @@ import { connect } from 'react-redux';
 import { deleteExperience } from '../../actions/profile';
 
 const Experience = ({ experience, deleteExperience }) => {
-  const experiences = experience.map(exp => (
+  const currentExp = experience
+    .filter(item => item.current === true)
+    .sort((a, b) => new Date(b.from) - new Date(a.from));
+
+  const pastExp = experience
+    .filter(item => item.current === false)
+    .sort((a, b) => new Date(b.to) - new Date(a.to));
+
+  const sortedExp = [...currentExp, ...pastExp];
+
+  const experiences = sortedExp.map(exp => (
     <tr key={exp._id}>
       <td>{exp.company}</td>
       <td className="hide-sm">{exp.title}</td>

@@ -6,7 +6,17 @@ import PropTypes from 'prop-types';
 import { deleteEducation } from '../../actions/profile';
 
 const Education = ({ education, deleteEducation }) => {
-  const educationHistory = education.map(edu => (
+  const currentEdu = education
+    .filter(item => item.current === true)
+    .sort((a, b) => new Date(b.from) - new Date(a.from));
+
+  const pastEdu = education
+    .filter(item => item.current === false)
+    .sort((a, b) => new Date(b.to) - new Date(a.to));
+
+  const sortedEdu = [...currentEdu, ...pastEdu];
+
+  const educationHistory = sortedEdu.map(edu => (
     <tr key={edu._id}>
       <td>{edu.school}</td>
       <td className="hide-sm">{edu.degree}</td>
