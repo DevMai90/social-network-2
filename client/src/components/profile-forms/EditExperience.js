@@ -39,7 +39,7 @@ const EditExperience = ({
       location: loading || !experience.location ? '' : experience.location,
       from: loading || !experience.from ? '' : experience.from.slice(0, 10),
       to: loading || !experience.to ? '' : experience.to.slice(0, 10),
-      current: loading || !experience.current ? '' : experience.current,
+      current: loading || !experience.current ? null : experience.current,
       description:
         loading || !experience.description ? '' : experience.description
     });
