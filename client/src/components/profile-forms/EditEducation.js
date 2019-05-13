@@ -2,12 +2,13 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getEducation } from '../../actions/profile';
+import { getEducation, updateEducation } from '../../actions/profile';
 import Spinner from '../layout/Spinner';
 
 const EditEducation = ({
   profile: { loading, education },
   getEducation,
+  updateEducation,
   match,
   history
 }) => {
@@ -55,11 +56,11 @@ const EditEducation = ({
     description
   } = formData;
 
-  // const onSubmit = e => {
-  //   e.preventDefault();
+  const onSubmit = e => {
+    e.preventDefault();
 
-  //   updateExperience(formData, history, match.params.id);
-  // };
+    updateEducation(formData, history, match.params.id);
+  };
 
   return (
     <Fragment>
@@ -69,13 +70,13 @@ const EditEducation = ({
         <Fragment>
           <h1 className="large text-primary">Edit Education</h1>
           <p className="lead">
-            <i className="fas fa-code-branch" /> Edit your past experience at{' '}
+            <i className="fas fa-code-branch" /> Edit your past education at{' '}
             <span className="text-primary">
-              <strong>{school}</strong>
+              <strong>{education.school}</strong>
             </span>
           </p>
           <small>* = required field</small>
-          <form className="form">
+          <form className="form" onSubmit={e => onSubmit(e)}>
             <div className="form-group">
               <input
                 type="text"
@@ -170,5 +171,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getEducation }
+  { getEducation, updateEducation }
 )(withRouter(EditEducation));

@@ -286,6 +286,34 @@ export const updateExperience = (formData, history, id) => async dispatch => {
   }
 };
 
+// Update Education by ID
+export const updateEducation = (formData, history, id) => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+  try {
+    const res = await axios.put(
+      `/api/profile/education/${id}`,
+      formData,
+      config
+    );
+
+    dispatch({
+      type: UPDATE_EDUCATION,
+      payload: res.data
+    });
+
+    history.push('/dashboard');
+  } catch (err) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+
 // Delete Account and Profile
 export const deleteAccount = () => async dispatch => {
   if (window.confirm('Are you sure? This CANNOT be undone.')) {
