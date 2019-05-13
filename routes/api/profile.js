@@ -281,7 +281,7 @@ router.put('/experience/:exp_id', auth, async (req, res) => {
 });
 
 // @route   PUT api/profile/education/:edu_id
-// @desc    Update profile experiece by ID
+// @desc    Update profile education by ID
 // @access  Private
 router.put(`/education/:edu_id`, auth, async (req, res) => {
   const {
