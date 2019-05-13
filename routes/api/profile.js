@@ -273,7 +273,7 @@ router.put('/experience/:exp_id', auth, async (req, res) => {
 
     await profile.save();
 
-    res.json(profile.experience);
+    res.json(profile);
   } catch (err) {
     console.log(err);
     res.status(500).send('Server Error');

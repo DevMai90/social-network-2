@@ -9,7 +9,8 @@ import {
   CLEAR_PROFILE,
   GET_PROFILES,
   GET_REPOS,
-  GET_EXPERIENCE
+  GET_EXPERIENCE,
+  UPDATE_EXPERIENCE
 } from './types';
 
 // Get current user's profile
@@ -239,16 +240,32 @@ export const getExperience = id => async dispatch => {
 };
 
 // Update Experience by ID
-// export const getExperience = id => async dispatch => {
-//   try {
-//     const res
-//   } catch (err) {
-//     dispatch({
-//       type: PROFILE_ERROR,
-//       payload: { msg: err.response.statusText, status: err.response.status }
-//     });
-//   }
-// }
+export const updateExperience = (formData, history, id) => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+  try {
+    const res = await axios.put(
+      `/api/profile/experience/${id}`,
+      formData,
+      config
+    );
+
+    dispatch({
+      type: UPDATE_EXPERIENCE,
+      payload: res.data
+    });
+
+    history.push('/dashboard');
+  } catch (err) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
 
 // Delete Account and Profile
 export const deleteAccount = () => async dispatch => {

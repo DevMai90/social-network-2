@@ -2,14 +2,15 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getCurrentProfile, getExperience } from '../../actions/profile';
+import { getExperience, updateExperience } from '../../actions/profile';
 import Spinner from '../layout/Spinner';
 
 const EditExperience = ({
-  profile: { profile, loading, experience },
-  getCurrentProfile,
+  profile: { loading, experience },
   getExperience,
-  match
+  updateExperience,
+  match,
+  history
 }) => {
   const [formData, setFormData] = useState({
     company: '',
@@ -46,19 +47,25 @@ const EditExperience = ({
 
   const { company, title, location, from, to, current, description } = formData;
 
+  const onSubmit = e => {
+    e.preventDefault();
+
+    updateExperience(formData, history, match.params.id);
+  };
+
   return (
     <Fragment>
       {loading ? (
         <Spinner />
       ) : (
         <Fragment>
-          <h1 className="large text-primary">Add An Experience</h1>
+          <h1 className="large text-primary">Edit Experience</h1>
           <p className="lead">
-            <i className="fas fa-code-branch" /> Add any developer/programming
-            positions that you have had in the past
+            <i className="fas fa-code-branch" /> Edit your past experience at{' '}
+            {experience.company}
           </p>
           <small>* = required field</small>
-          <form className="form">
+          <form className="form" onSubmit={e => onSubmit(e)}>
             <div className="form-group">
               <input
                 type="text"
@@ -144,7 +151,9 @@ const EditExperience = ({
 };
 
 EditExperience.propTypes = {
-  getCurrentProfile: PropTypes.func.isRequired
+  updateExperience: PropTypes.func.isRequired,
+  getExperience: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -153,5 +162,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getCurrentProfile, getExperience }
+  { getExperience, updateExperience }
 )(withRouter(EditExperience));
