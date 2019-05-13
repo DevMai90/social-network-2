@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
 import PropTypes from 'prop-types';
@@ -25,6 +26,11 @@ const Education = ({ education, deleteEducation }) => {
           Delete
         </button>
       </td>
+      <td>
+        <Link to={`/education/${edu._id}`} className="btn btn-dark">
+          Edit
+        </Link>
+      </td>
     </tr>
   ));
   return (
@@ -36,6 +42,7 @@ const Education = ({ education, deleteEducation }) => {
             <th>School</th>
             <th className="hide-sm">Degree</th>
             <th className="hide-sm">Years</th>
+            <th />
             <th />
           </tr>
         </thead>

@@ -280,6 +280,48 @@ router.put('/experience/:exp_id', auth, async (req, res) => {
   }
 });
 
+// @route   PUT api/profile/education/:edu_id
+// @desc    Update profile experiece by ID
+// @access  Private
+router.put(`/education/:edu_id`, auth, async (req, res) => {
+  const {
+    school,
+    degree,
+    fieldOfStudy,
+    from,
+    to,
+    current,
+    description
+  } = req.body;
+
+  const updatedEdu = {
+    school,
+    degree,
+    fieldOfStudy,
+    from,
+    to,
+    current,
+    description
+  };
+
+  try {
+    const profile = await Profile.findOne({ user: req.user.id });
+
+    const updateIndex = profile.education
+      .map(item => item.id)
+      .indexOf(req.params.edu_id);
+
+    profile.education.splice(updateIndex, 1, updatedEdu);
+
+    await profile.save();
+
+    res.json(profile.education);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send('Server Error');
+  }
+});
+
 // @route   DELETE api/profile/experience/:exp_id
 // @desc    Delete profile experience
 // @access  Private

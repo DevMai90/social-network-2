@@ -6,4 +6,4 @@ This is a second go-around with Brad's MERN stack course. This updated version i
 
 Expanded on the application with the following:
 
-- Edit Education and Experience routes.
+- Added Edit Education functionality and routes.
