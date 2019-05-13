@@ -21,12 +21,13 @@ const Education = ({ education, deleteEducation }) => {
       <td>{edu.school}</td>
       <td className="hide-sm">{edu.degree}</td>
       <td>
-        <Moment format="YYYY/MM/DD">{edu.from}</Moment> -{' '}
-        {edu.to === null ? (
-          ' Now'
-        ) : (
-          <Moment format="YYYY/MM/DD">{edu.to}</Moment>
-        )}
+        <Moment format="MM/DD/YY">{edu.from}</Moment> -{' '}
+        {edu.to === null ? ' Now' : <Moment format="MM/DD/YY">{edu.to}</Moment>}
+      </td>
+      <td>
+        <Link to={`/education/${edu._id}`} className="btn btn-dark">
+          Edit
+        </Link>
       </td>
       <td>
         <button
@@ -35,11 +36,6 @@ const Education = ({ education, deleteEducation }) => {
         >
           Delete
         </button>
-      </td>
-      <td>
-        <Link to={`/education/${edu._id}`} className="btn btn-dark">
-          Edit
-        </Link>
       </td>
     </tr>
   ));
