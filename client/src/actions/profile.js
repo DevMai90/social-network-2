@@ -104,11 +104,11 @@ export const createProfile = (
       payload: res.data
     });
 
-    dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created', 'success'));
-
-    if (!edit) {
+    if (edit) {
       history.push('/dashboard');
     }
+
+    dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created', 'success'));
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -278,6 +278,8 @@ export const updateExperience = (formData, history, id) => async dispatch => {
     });
 
     history.push('/dashboard');
+
+    dispatch(setAlert('Experience Updated', 'success'));
   } catch (err) {
     dispatch({
       type: PROFILE_ERROR,
@@ -306,6 +308,8 @@ export const updateEducation = (formData, history, id) => async dispatch => {
     });
 
     history.push('/dashboard');
+
+    dispatch(setAlert('Experience Updated', 'success'));
   } catch (err) {
     dispatch({
       type: PROFILE_ERROR,
