@@ -112,7 +112,7 @@ const EditExperience = ({
                   checked={current}
                   value={current}
                   onChange={e => {
-                    setFormData({ ...formData, current: !current });
+                    setFormData({ ...formData, current: !current, to: '' });
                     toggleDisabled(!toDateDisabled);
                   }}
                 />{' '}
@@ -126,7 +126,7 @@ const EditExperience = ({
                 name="to"
                 value={to}
                 onChange={e => onChange(e)}
-                disabled={toDateDisabled ? 'disabled' : ''}
+                disabled={current ? 'disabled' : ''}
               />
             </div>
             <div className="form-group">
