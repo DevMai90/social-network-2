@@ -21,14 +21,14 @@ const Profile = ({
   }, [getProfileById, match.params.id]);
 
   const currentExp =
-    loading || !profile.experience
+    loading || !profile
       ? []
       : profile.experience
           .filter(item => item.current === true)
           .sort((a, b) => new Date(b.from) - new Date(a.from));
 
   const pastExp =
-    loading || !profile.experience
+    loading || !profile
       ? []
       : profile.experience
           .filter(item => item.current === false)
@@ -37,14 +37,14 @@ const Profile = ({
   const sortedExp = [...currentExp, ...pastExp];
 
   const currentEdu =
-    loading || !profile.education
+    loading || !profile
       ? []
       : profile.education
           .filter(item => item.current === true)
           .sort((a, b) => new Date(b.from) - new Date(a.from));
 
   const pastEdu =
-    loading || !profile.education
+    loading || !profile
       ? []
       : profile.education
           .filter(item => item.current === false)
