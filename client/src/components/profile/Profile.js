@@ -36,6 +36,22 @@ const Profile = ({
 
   const sortedExp = [...currentExp, ...pastExp];
 
+  const currentEdu =
+    loading || !profile.education
+      ? []
+      : profile.education
+          .filter(item => item.current === true)
+          .sort((a, b) => new Date(b.from) - new Date(a.from));
+
+  const pastEdu =
+    loading || !profile.education
+      ? []
+      : profile.education
+          .filter(item => item.current === false)
+          .sort((a, b) => new Date(b.to) - new Date(a.to));
+
+  const sortedEdu = [...currentEdu, ...pastEdu];
+
   return (
     <Fragment>
       {profile === null || loading ? (
@@ -71,7 +87,7 @@ const Profile = ({
               <h2 className="text-primary">Education</h2>
               {profile.education.length > 0 ? (
                 <Fragment>
-                  {profile.education.map(edu => (
+                  {sortedEdu.map(edu => (
                     <ProfileEducation key={edu._id} education={edu} />
                   ))}
                 </Fragment>
