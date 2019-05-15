@@ -20,6 +20,22 @@ const Profile = ({
     getProfileById(match.params.id);
   }, [getProfileById, match.params.id]);
 
+  const currentExp =
+    loading || !profile.experience
+      ? []
+      : profile.experience
+          .filter(item => item.current === true)
+          .sort((a, b) => new Date(b.from) - new Date(a.from));
+
+  const pastExp =
+    loading || !profile.experience
+      ? []
+      : profile.experience
+          .filter(item => item.current === false)
+          .sort((a, b) => new Date(b.to) - new Date(a.to));
+
+  const sortedExp = [...currentExp, ...pastExp];
+
   return (
     <Fragment>
       {profile === null || loading ? (
@@ -43,7 +59,7 @@ const Profile = ({
               <h2 className="text-primary">Experience</h2>
               {profile.experience.length > 0 ? (
                 <Fragment>
-                  {profile.experience.map(exp => (
+                  {sortedExp.map(exp => (
                     <ProfileExperience key={exp._id} experience={exp} />
                   ))}
                 </Fragment>
