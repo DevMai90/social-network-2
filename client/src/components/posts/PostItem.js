@@ -5,6 +5,7 @@ import Moment from 'react-moment';
 import { connect } from 'react-redux';
 import { addLike, removeLike, deletePost } from '../../actions/post';
 
+// Todo: Edit post if user is authenticated.
 const PostItem = ({
   auth,
   post: { _id, user, text, name, avatar, likes, comments, date },
@@ -49,13 +50,22 @@ const PostItem = ({
             )}
           </Link>
           {!auth.loading && auth.user._id === user && (
-            <button
-              type="button"
-              className="btn btn-danger"
-              onClick={e => deletePost(_id)}
-            >
-              <i className="fas fa-times" />
-            </button>
+            <Fragment>
+              <button
+                type="button"
+                className="btn btn-dark"
+                // Todo: edit post
+              >
+                Edit Comment
+              </button>
+              <button
+                type="button"
+                className="btn btn-danger"
+                onClick={e => deletePost(_id)}
+              >
+                <i className="fas fa-times" />
+              </button>
+            </Fragment>
           )}
         </Fragment>
       )}
