@@ -51,13 +51,9 @@ const PostItem = ({
           </Link>
           {!auth.loading && auth.user._id === user && (
             <Fragment>
-              <button
-                type="button"
-                className="btn btn-dark"
-                // Todo: edit post
-              >
-                Edit Comment
-              </button>
+              <Link to={`/posts/edit/${_id}`} className="btn btn-dark">
+                Edit Post
+              </Link>
               <button
                 type="button"
                 className="btn btn-danger"
