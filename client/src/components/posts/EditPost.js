@@ -2,10 +2,16 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getPost } from '../../actions/post';
+import { getPost, updatePost } from '../../actions/post';
 import Spinner from '../layout/Spinner';
 
-const EditPost = ({ getPost, match, post: { post, loading } }) => {
+const EditPost = ({
+  getPost,
+  updatePost,
+  match,
+  history,
+  post: { post, loading }
+}) => {
   const [text, setText] = useState('');
 
   useEffect(() => {
@@ -16,6 +22,12 @@ const EditPost = ({ getPost, match, post: { post, loading } }) => {
     !loading && post && setText(post.text);
   }, [loading, post]);
 
+  const updPost = { text };
+
+  const onSubmit = e => {
+    e.preventDefault();
+    updatePost(updPost, history, match.params.id);
+  };
   return (
     <Fragment>
       {loading ? (
@@ -29,14 +41,7 @@ const EditPost = ({ getPost, match, post: { post, loading } }) => {
             <div className="bg-primary p">
               <h3>Edit Post...</h3>
             </div>
-            <form
-              className="form my-1"
-              onSubmit={e => {
-                e.preventDefault();
-                // addPost({ text });
-                // setText('');
-              }}
-            >
+            <form className="form my-1" onSubmit={e => onSubmit(e)}>
               <textarea
                 name="text"
                 cols="30"
@@ -59,7 +64,11 @@ const EditPost = ({ getPost, match, post: { post, loading } }) => {
   );
 };
 
-EditPost.propTypes = {};
+EditPost.propTypes = {
+  getPost: PropTypes.func.isRequired,
+  updatePost: PropTypes.func.isRequired,
+  post: PropTypes.object.isRequired
+};
 
 const mapStateToProps = state => ({
   post: state.post
@@ -67,5 +76,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getPost }
-)(EditPost);
+  { getPost, updatePost }
+)(withRouter(EditPost));

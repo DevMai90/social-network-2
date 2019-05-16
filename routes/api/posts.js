@@ -81,6 +81,30 @@ router.get('/:id', auth, async (req, res) => {
   }
 });
 
+// @route   PUT /api/posts/edit/:id
+// @desc    Edit post by ID
+// @access  Private
+router.put('/edit/:id', auth, async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+
+    if (!post) {
+      return res.status(404).json({ msg: 'Post not found' });
+    }
+    post.text = req.body.text;
+
+    await post.save();
+
+    res.json(post);
+  } catch (err) {
+    console.log(err.message);
+    if (err.kind === 'ObjectId') {
+      return res.status(404).json({ msg: 'Post not found' });
+    }
+    res.status(500).send('Server Error');
+  }
+});
+
 // @route   DELETE /api/posts/:id
 // @desc    Delete post by ID
 // @access  Private

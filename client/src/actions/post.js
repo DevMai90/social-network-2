@@ -8,7 +8,8 @@ import {
   ADD_POST,
   GET_POST,
   ADD_COMMENT,
-  REMOVE_COMMENT
+  REMOVE_COMMENT,
+  UPDATE_POST
 } from './types';
 
 export const getPosts = () => async dispatch => {
@@ -108,6 +109,30 @@ export const addPost = formData => async dispatch => {
     });
 
     dispatch(setAlert('Post Added', 'success'));
+  } catch (err) {
+    dispatch({
+      type: POST_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+
+export const updatePost = (formData, history, id) => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  try {
+    const res = await axios.put(`/api/posts/edit/${id}`, formData, config);
+
+    dispatch({
+      type: UPDATE_POST,
+      payload: res.data
+    });
+
+    history.push('/posts');
   } catch (err) {
     dispatch({
       type: POST_ERROR,
