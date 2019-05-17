@@ -27,7 +27,8 @@ const PostItem = ({
         Posted on <Moment format="MM/DD/YY">{date}</Moment>
         {edited && (
           <span>
-            , Edited on <Moment format="MM/DD/YY">{edited}</Moment>
+            , Edited on <Moment format="MM/DD/YY">{edited}</Moment> at{' '}
+            <Moment format="h:mm a">{edited}</Moment>
           </span>
         )}
       </p>

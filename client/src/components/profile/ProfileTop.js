@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Moment from 'react-moment';
 
 const ProfileTop = ({
   profile: {
@@ -8,7 +9,9 @@ const ProfileTop = ({
     location,
     website,
     social,
-    user: { name, avatar }
+    githubusername,
+    user: { name, avatar },
+    date
   }
 }) => {
   return (
@@ -50,7 +53,19 @@ const ProfileTop = ({
             <i className="fab fa-instagram fa-2x" />
           </a>
         )}
+        {githubusername && (
+          <a
+            href={`https://github.com/${githubusername}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i className="fab fa-github fa-2x" />
+          </a>
+        )}
       </div>
+      <p>
+        Member since <Moment format="MM/DD/YY">{date}</Moment>
+      </p>
     </div>
   );
 };
