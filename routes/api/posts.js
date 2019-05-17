@@ -92,6 +92,7 @@ router.put('/edit/:id', auth, async (req, res) => {
       return res.status(404).json({ msg: 'Post not found' });
     }
     post.text = req.body.text;
+    post.edited = new Date();
 
     await post.save();
 

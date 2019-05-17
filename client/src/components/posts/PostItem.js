@@ -8,7 +8,7 @@ import { addLike, removeLike, deletePost } from '../../actions/post';
 // Todo: Edit post if user is authenticated.
 const PostItem = ({
   auth,
-  post: { _id, user, text, name, avatar, likes, comments, date },
+  post: { _id, user, text, name, avatar, likes, comments, date, edited },
   addLike,
   removeLike,
   deletePost,
@@ -25,6 +25,11 @@ const PostItem = ({
       <p className="my-1">{text}</p>
       <p className="post-date">
         Posted on <Moment format="MM/DD/YY">{date}</Moment>
+        {edited && (
+          <span>
+            , Edited on <Moment format="MM/DD/YY">{edited}</Moment>
+          </span>
+        )}
       </p>
       {showActions && (
         <Fragment>
