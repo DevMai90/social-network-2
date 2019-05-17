@@ -133,6 +133,8 @@ export const updatePost = (formData, history, id) => async dispatch => {
     });
 
     history.push('/posts');
+
+    dispatch(setAlert('Post Updated', 'success'));
   } catch (err) {
     dispatch({
       type: POST_ERROR,

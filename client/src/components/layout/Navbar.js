@@ -14,13 +14,19 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
         </Link>
       </li>
       <li>
-        <Link to="/profiles">Developers</Link>
+        <Link to="/profiles">
+          <i className="fab fa-connectdevelop" />{' '}
+          <span className="hide-sm">Developers</span>
+        </Link>
       </li>
       <li>
-        <Link to="/posts">Posts</Link>
+        <Link to="/posts">
+          <i className="far fa-address-book" />{' '}
+          <span className="hide-sm">Posts</span>
+        </Link>
       </li>
       <li>
-        <Link onClick={logout} to="#!">
+        <Link onClick={logout} to="/">
           <i className="fas fa-sign-out-alt" />{' '}
           <span className="hide-sm">Logout</span>
         </Link>

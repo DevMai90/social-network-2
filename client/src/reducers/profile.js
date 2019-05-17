@@ -74,13 +74,6 @@ export default function(state = initialState, action) {
         loading: false,
         experience: {}
       };
-    // return {
-    //   ...state,
-
-    //   experience: {},
-    //   loading: false
-    //   // WORK HERE
-    // };
     default:
       return state;
   }

@@ -46,7 +46,6 @@ const EditPost = ({
                 name="text"
                 cols="30"
                 rows="5"
-                placeholder="Create a post"
                 required
                 value={text}
                 onChange={e => setText(e.target.value)}

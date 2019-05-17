@@ -1,11 +1,10 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
 import { removeComment } from '../../actions/post';
 
-// Todo: Edit comment item if authenticated
 const CommentItem = ({
   postId,
   comment: { _id, text, name, avatar, user, date },
@@ -25,22 +24,13 @@ const CommentItem = ({
         Posted on <Moment format="MM/DD/YY">{date}</Moment>
       </p>
       {!auth.loading && auth.user._id === user && (
-        <Fragment>
-          <button
-            type="button"
-            className="btn btn-dark"
-            // Todo: Edit comment if authenticated
-          >
-            Edit Comment
-          </button>
-          <button
-            type="button"
-            className="btn btn-danger"
-            onClick={e => removeComment(postId, _id)}
-          >
-            <i className="fas fa-times" />
-          </button>
-        </Fragment>
+        <button
+          type="button"
+          className="btn btn-danger"
+          onClick={e => removeComment(postId, _id)}
+        >
+          <i className="fas fa-times" />
+        </button>
       )}
     </div>
   </div>
