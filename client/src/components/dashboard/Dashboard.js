@@ -7,6 +7,7 @@ import Spinner from '../layout/Spinner';
 import { connect } from 'react-redux';
 import { getCurrentProfile, deleteAccount } from '../../actions/profile';
 import PropTypes from 'prop-types';
+import DeleteModal from './DeleteModal';
 
 const Dashboard = ({
   getCurrentProfile,
@@ -36,6 +37,7 @@ const Dashboard = ({
             <button className="btn btn-danger" onClick={() => deleteAccount()}>
               <i className="fas fa-user-minus" /> Delete Account
             </button>
+            <DeleteModal />
           </div>
         </Fragment>
       ) : (
