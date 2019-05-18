@@ -36,13 +36,22 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const guestLinks = (
     <ul>
       <li>
-        <Link to="/profiles">Developers</Link>
+        <Link to="/profiles">
+          <i className="fab fa-connectdevelop" />{' '}
+          <span className="hide-sm">Developers</span>
+        </Link>
       </li>
       <li>
-        <Link to="/register">Register</Link>
+        <Link to="/register">
+          <i className="fas fa-user-plus" />{' '}
+          <span className="hide-sm">Register</span>
+        </Link>
       </li>
       <li>
-        <Link to="/login">Login</Link>
+        <Link to="/login">
+          <i className="fas fa-sign-in-alt" />{' '}
+          <span className="hide-sm">Login</span>
+        </Link>
       </li>
     </ul>
   );
