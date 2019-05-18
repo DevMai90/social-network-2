@@ -109,7 +109,8 @@ const Profile = ({
 Profile.propTypes = {
   getProfileById: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  updateViews: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({

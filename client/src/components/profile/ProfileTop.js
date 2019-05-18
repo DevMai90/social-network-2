@@ -11,7 +11,8 @@ const ProfileTop = ({
     social,
     githubusername,
     user: { name, avatar },
-    date
+    date,
+    views
   }
 }) => {
   return (
@@ -63,6 +64,7 @@ const ProfileTop = ({
           </a>
         )}
       </div>
+      <p>Number of Profile Views: {views}</p>
       <p>
         Member since <Moment format="MM/DD/YY">{date}</Moment>
       </p>
