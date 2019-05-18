@@ -108,6 +108,10 @@ const ProfileSchema = new mongoose.Schema({
   date: {
     type: Date,
     default: Date.now
+  },
+  views: {
+    type: Number,
+    default: 0
   }
 });
 

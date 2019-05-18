@@ -148,6 +148,27 @@ router.get('/user/:user_id', async (req, res) => {
   }
 });
 
+// @route   put /api/profile/user/views/:user_id
+// @desc    Update profile views by ID
+// @access  Public
+router.put('/user/views/:user_id', async (req, res) => {
+  try {
+    const profile = await Profile.findOneAndUpdate(
+      { user: req.params.user_id },
+      { $inc: { views: 1 } },
+      { new: true }
+    );
+
+    res.json(profile);
+  } catch (err) {
+    console.log(err.message);
+    if (err.kind == 'ObjectId')
+      return res.status(400).json({ msg: 'Profile not found' });
+
+    res.status(500).send('Server Error');
+  }
+});
+
 // @route   DELETE /api/profile/
 // @desc    Delete profile, user, and posts
 // @access  private
