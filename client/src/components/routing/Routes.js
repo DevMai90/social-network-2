@@ -15,7 +15,6 @@ import Profile from '../profile/Profile';
 import Posts from '../posts/Posts';
 import Post from '../post/Post';
 import EditPost from '../posts/EditPost';
-import UploadAvatar from '../profile-forms/UploadAvatar';
 import PrivateRoute from './PrivateRoute';
 import NotFound from '../layout/NotFound';
 
@@ -28,7 +27,6 @@ const Routes = () => {
         <Route exact path="/register" component={Register} />
         <Route exact path="/profiles" component={Profiles} />
         <Route exact path="/profile/:id" component={Profile} />
-        <Route exact path="/upload/avatar" component={UploadAvatar} />
         <PrivateRoute exact path="/dashboard" component={Dashboard} />
         <PrivateRoute exact path="/create-profile" component={CreateProfile} />
         <PrivateRoute exact path="/edit-profile" component={EditProfile} />
