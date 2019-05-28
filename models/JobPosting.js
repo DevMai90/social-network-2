@@ -38,6 +38,14 @@ const JobPosting = new mongoose.Schema({
   date: {
     type: Date,
     default: Date.now
+  },
+  contactName: {
+    type: String,
+    required: true
+  },
+  contactInfo: {
+    type: String,
+    required: true
   }
 });
 
