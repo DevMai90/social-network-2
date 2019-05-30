@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const JobPosting = new mongoose.Schema({
+const JobSchema = new mongoose.Schema({
   // Reference the user model
   user: {
     type: mongoose.Schema.Types.ObjectId,
@@ -8,7 +8,7 @@ const JobPosting = new mongoose.Schema({
   },
   seniority: {
     type: String,
-    required
+    required: true
   },
   term: {
     type: String,
@@ -50,4 +50,4 @@ const JobPosting = new mongoose.Schema({
   }
 });
 
-module.exports = JobPosting = mongoose.model('jobPosting', JobPosting);
+module.exports = Job = mongoose.model('job', JobSchema);

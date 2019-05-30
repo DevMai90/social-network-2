@@ -15,6 +15,7 @@ import Profile from '../profile/Profile';
 import Posts from '../posts/Posts';
 import Post from '../post/Post';
 import EditPost from '../posts/EditPost';
+import Jobs from '../jobs/Jobs';
 import PrivateRoute from './PrivateRoute';
 import NotFound from '../layout/NotFound';
 
@@ -37,6 +38,7 @@ const Routes = () => {
         <PrivateRoute exact path="/posts" component={Posts} />
         <PrivateRoute exact path="/posts/:id" component={Post} />
         <PrivateRoute exact path="/posts/edit/:id" component={EditPost} />
+        <PrivateRoute exact path="/jobs" component={Jobs} />
         <Route component={NotFound} />
       </Switch>
     </section>
