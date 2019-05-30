@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const ProfileSchema = new mongoose.Schema({
-  // Reference the User model
+  // Reference the user model. Searches for the user document that matches id.
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user'
@@ -29,6 +29,7 @@ const ProfileSchema = new mongoose.Schema({
   githubusername: {
     type: String
   },
+  // Each experience contains title, company, etc.
   experience: [
     {
       title: {

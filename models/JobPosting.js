@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const JobPosting = new mongoose.Schema({
+  // Reference the user model
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user'
