@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
+import moment from 'moment';
 import { connect } from 'react-redux';
 import { deleteExperience } from '../../actions/profile';
 
@@ -21,8 +22,12 @@ const Experience = ({ experience, deleteExperience }) => {
       <td>{exp.company}</td>
       <td className="hide-sm">{exp.title}</td>
       <td>
-        <Moment format="MM/DD/YY">{exp.from}</Moment> -{' '}
-        {exp.to === null ? ' Now' : <Moment format="MM/DD/YY">{exp.to}</Moment>}
+        <Moment format="MM/DD/YY">{moment.utc(exp.from)}</Moment> -{' '}
+        {exp.to === null ? (
+          ' Now'
+        ) : (
+          <Moment format="MM/DD/YY">{moment.utc(exp.to)}</Moment>
+        )}
       </td>
       <td>
         <Link to={`/experience/${exp._id}`} className="btn btn-dark">

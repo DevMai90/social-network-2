@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
+import moment from 'moment';
 import PropTypes from 'prop-types';
 import { deleteEducation } from '../../actions/profile';
 
@@ -21,8 +22,12 @@ const Education = ({ education, deleteEducation }) => {
       <td>{edu.school}</td>
       <td className="hide-sm">{edu.degree}</td>
       <td>
-        <Moment format="MM/DD/YY">{edu.from}</Moment> -{' '}
-        {edu.to === null ? ' Now' : <Moment format="MM/DD/YY">{edu.to}</Moment>}
+        <Moment format="MM/DD/YY">{moment.utc(edu.from)}</Moment> -{' '}
+        {edu.to === null ? (
+          ' Now'
+        ) : (
+          <Moment format="MM/DD/YY">{moment.utc(edu.to)}</Moment>
+        )}
       </td>
       <td>
         <Link to={`/education/${edu._id}`} className="btn btn-dark">
