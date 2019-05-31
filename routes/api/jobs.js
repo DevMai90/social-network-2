@@ -10,6 +10,7 @@ const Job = require('../../models/Job');
 // @desc    Create a job post
 // @access  Private
 router.post('/', auth, async (req, res) => {
+  // @todo: Add input validation errors
   const {
     seniority,
     term,
@@ -20,7 +21,8 @@ router.post('/', auth, async (req, res) => {
     salary,
     benefits,
     contactName,
-    contactInfo
+    contactInfo,
+    availability
   } = req.body;
 
   try {
@@ -28,6 +30,8 @@ router.post('/', auth, async (req, res) => {
 
     const newJob = new Job({
       user: req.user.id,
+      name: user.name,
+      avatar: user.avatar,
       seniority,
       term,
       position,
@@ -37,7 +41,8 @@ router.post('/', auth, async (req, res) => {
       salary,
       benefits,
       contactName,
-      contactInfo
+      contactInfo,
+      availability
     });
 
     const job = await newJob.save();

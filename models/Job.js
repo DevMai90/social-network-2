@@ -47,6 +47,10 @@ const JobSchema = new mongoose.Schema({
   contactInfo: {
     type: String,
     required: true
+  },
+  availability: {
+    type: Boolean,
+    default: true
   }
 });
 

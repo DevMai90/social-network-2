@@ -127,7 +127,7 @@ const EditEducation = ({
                     toggleDisabled(!toDateDisabled);
                   }}
                 />{' '}
-                Current Job
+                Current School
               </p>
             </div>
             <div className="form-group">
