@@ -83,7 +83,7 @@ const AddExperience = ({ addExperience, history }) => {
               checked={current}
               value={current}
               onChange={e => {
-                setFormData({ ...formData, current: !current });
+                setFormData({ ...formData, current: !current, to: '' });
                 toggleDisabled(!toDateDisabled);
               }}
             />{' '}
