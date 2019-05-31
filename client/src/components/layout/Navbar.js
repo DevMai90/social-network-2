@@ -20,6 +20,12 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
         </Link>
       </li>
       <li>
+        <Link to="/jobs">
+          <i className="far fa-list-alt" />{' '}
+          <span className="hide-sm">Job Board</span>
+        </Link>
+      </li>
+      <li>
         <Link to="/posts">
           <i className="far fa-address-book" />{' '}
           <span className="hide-sm">Posts</span>
@@ -39,6 +45,12 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
         <Link to="/profiles">
           <i className="fab fa-connectdevelop" />{' '}
           <span className="hide-sm">Developers</span>
+        </Link>
+      </li>
+      <li>
+        <Link to="/register/jobs">
+          <i className="far fa-list-alt" />{' '}
+          <span className="hide-sm">Job Board</span>
         </Link>
       </li>
       <li>
