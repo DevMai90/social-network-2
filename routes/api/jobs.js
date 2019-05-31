@@ -46,7 +46,7 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    // @todo: Add input validation errors
+
     const {
       seniority,
       term,
@@ -83,7 +83,6 @@ router.post(
 
       const job = await newJob.save();
 
-      // console.log(user);
       res.json(job);
     } catch (err) {
       console.log(err.message);
@@ -91,5 +90,19 @@ router.post(
     }
   }
 );
+
+// @route   GET /api/jobs
+// @desc    Get all job postings
+// @access  Private
+router.get('/', auth, async (req, res) => {
+  try {
+    const jobs = await Job.find().sort({ date: -1 });
+
+    res.send(jobs);
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send('Server Error');
+  }
+});
 
 module.exports = router;
