@@ -6,6 +6,12 @@ const JobSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user'
   },
+  name: {
+    type: String
+  },
+  avatar: {
+    type: String
+  },
   seniority: {
     type: String,
     required: true
@@ -39,6 +45,10 @@ const JobSchema = new mongoose.Schema({
   date: {
     type: Date,
     default: Date.now
+  },
+  companyName: {
+    type: String,
+    required: true
   },
   contactName: {
     type: String,

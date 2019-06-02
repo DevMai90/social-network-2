@@ -56,6 +56,7 @@ router.post(
       location,
       salary,
       benefits,
+      companyName,
       contactName,
       contactInfo,
       availability
@@ -76,6 +77,7 @@ router.post(
         location,
         salary,
         benefits,
+        companyName,
         contactName,
         contactInfo,
         availability

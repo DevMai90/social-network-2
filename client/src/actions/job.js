@@ -9,7 +9,7 @@ export const getJobs = () => async dispatch => {
       type: GET_JOBS,
       payload: res.data
     });
-  } catch (error) {
+  } catch (err) {
     dispatch({
       type: JOB_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
