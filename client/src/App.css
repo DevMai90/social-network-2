@@ -589,3 +589,14 @@ button {
 .ReactModal__Overlay--before-close {
   opacity: 0;
 }
+
+/* Jobs Page*/
+.jobs {
+  display: grid;
+  grid-template-columns: 6fr 4fr;
+  align-items: center;
+  grid-gap: 2rem;
+  padding: 1rem;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
