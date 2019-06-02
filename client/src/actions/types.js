@@ -27,3 +27,5 @@ export const UPDATE_EXPERIENCE = 'UPDATE_EXPERIENCE';
 export const GET_EDUCATION = 'GET_EDUCATION';
 export const UPDATE_EDUCATION = 'UPDATE_EDUCATION';
 export const UPDATE_POST = 'UPDATE_POST';
+export const GET_JOBS = 'GET_JOBS';
+export const JOB_ERROR = 'JOB_ERROR';
