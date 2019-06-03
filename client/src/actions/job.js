@@ -18,21 +18,23 @@ export const getJobs = () => async dispatch => {
   }
 };
 
-export const addJob = formData => async dispatch => {
-  // Sending data. Need to set headers
-  const config = {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  };
-
+export const addJob = (formData, history) => async dispatch => {
   try {
-    const res = axios.post('/api/jobs', formData, config);
+    // Sending data. Need to set headers
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+
+    const res = await axios.post('/api/jobs', formData, config);
 
     dispatch({
       type: ADD_JOB,
       payload: res.data
     });
+
+    history.push('/jobs');
 
     dispatch(setAlert('Job Added', 'success'));
   } catch (err) {
