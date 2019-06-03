@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import JobItem from './JobItem';
 import Spinner from '../layout/Spinner';
@@ -18,6 +19,13 @@ const Jobs = ({ job: { jobs, loading }, getJobs }) => {
         <i className="far fa-list-alt" /> Browse and see our list of
         opportunities
       </p>
+      <Link
+        className="btn btn-dark"
+        to="/jobs/add-job"
+        style={{ marginBottom: '20px' }}
+      >
+        Post New Listing
+      </Link>
       {jobs.map(job => (
         <JobItem key={job._id} job={job} />
       ))}

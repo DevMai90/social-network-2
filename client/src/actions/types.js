@@ -29,3 +29,4 @@ export const UPDATE_EDUCATION = 'UPDATE_EDUCATION';
 export const UPDATE_POST = 'UPDATE_POST';
 export const GET_JOBS = 'GET_JOBS';
 export const JOB_ERROR = 'JOB_ERROR';
+export const ADD_JOB = 'ADD_JOB';
