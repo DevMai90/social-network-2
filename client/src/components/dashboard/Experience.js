@@ -5,17 +5,10 @@ import Moment from 'react-moment';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import { deleteExperience } from '../../actions/profile';
+import sortHistory from '../../utils/sortHistory';
 
 const Experience = ({ experience, deleteExperience }) => {
-  const currentExp = experience
-    .filter(item => item.current === true)
-    .sort((a, b) => new Date(b.from) - new Date(a.from));
-
-  const pastExp = experience
-    .filter(item => item.current === false)
-    .sort((a, b) => new Date(b.to) - new Date(a.to));
-
-  const sortedExp = [...currentExp, ...pastExp];
+  const sortedExp = sortHistory(experience);
 
   const experiences = sortedExp.map(exp => (
     <tr key={exp._id}>

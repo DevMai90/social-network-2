@@ -9,6 +9,7 @@ import ProfileAbout from './ProfileAbout';
 import ProfileExperience from './ProfileExperience';
 import ProfileEducation from './ProfileEducation';
 import ProfileGithub from './ProfileGithub';
+import sortHistory from '../../utils/sortHistory';
 
 const Profile = ({
   match,
@@ -20,37 +21,9 @@ const Profile = ({
     getProfileById(match.params.id);
   }, [getProfileById, match.params.id]);
 
-  const currentExp =
-    loading || !profile
-      ? []
-      : profile.experience
-          .filter(item => item.current === true)
-          .sort((a, b) => new Date(b.from) - new Date(a.from));
+  const sortedExp = loading || !profile ? [] : sortHistory(profile.experience);
 
-  const pastExp =
-    loading || !profile
-      ? []
-      : profile.experience
-          .filter(item => item.current === false)
-          .sort((a, b) => new Date(b.to) - new Date(a.to));
-
-  const sortedExp = [...currentExp, ...pastExp];
-
-  const currentEdu =
-    loading || !profile
-      ? []
-      : profile.education
-          .filter(item => item.current === true)
-          .sort((a, b) => new Date(b.from) - new Date(a.from));
-
-  const pastEdu =
-    loading || !profile
-      ? []
-      : profile.education
-          .filter(item => item.current === false)
-          .sort((a, b) => new Date(b.to) - new Date(a.to));
-
-  const sortedEdu = [...currentEdu, ...pastEdu];
+  const sortedEdu = loading || !profile ? [] : sortHistory(profile.education);
 
   return (
     <Fragment>
