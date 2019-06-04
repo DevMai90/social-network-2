@@ -10,7 +10,8 @@ const EditPost = ({
   updatePost,
   match,
   history,
-  post: { post, loading }
+  post: { post, loading },
+  user
 }) => {
   const [text, setText] = useState('');
 
@@ -50,11 +51,15 @@ const EditPost = ({
                 value={text}
                 onChange={e => setText(e.target.value)}
               />
-              <input
-                type="submit"
-                className="btn btn-dark my-1"
-                value="Update Post"
-              />
+              {!user
+                ? null
+                : user._id == post.user && (
+                    <input
+                      type="submit"
+                      className="btn btn-dark my-1"
+                      value="Update Post"
+                    />
+                  )}
             </form>
           </div>
         </Fragment>
@@ -72,7 +77,8 @@ EditPost.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  post: state.post
+  post: state.post,
+  user: state.auth.user
 });
 
 export default connect(
