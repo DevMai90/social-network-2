@@ -51,9 +51,9 @@ const EditPost = ({
                 value={text}
                 onChange={e => setText(e.target.value)}
               />
-              {!user
+              {loading || !user
                 ? null
-                : user._id == post.user && (
+                : user._id === post.user && (
                     <input
                       type="submit"
                       className="btn btn-dark my-1"
