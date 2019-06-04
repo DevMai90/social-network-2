@@ -5,17 +5,10 @@ import Moment from 'react-moment';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import { deleteEducation } from '../../actions/profile';
+import sortHistory from '../../utils/sortHistory';
 
 const Education = ({ education, deleteEducation }) => {
-  const currentEdu = education
-    .filter(item => item.current === true)
-    .sort((a, b) => new Date(b.from) - new Date(a.from));
-
-  const pastEdu = education
-    .filter(item => item.current === false)
-    .sort((a, b) => new Date(b.to) - new Date(a.to));
-
-  const sortedEdu = [...currentEdu, ...pastEdu];
+  const sortedEdu = sortHistory(education);
 
   const educationHistory = sortedEdu.map(edu => (
     <tr key={edu._id}>
