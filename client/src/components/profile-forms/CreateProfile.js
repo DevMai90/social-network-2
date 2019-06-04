@@ -221,7 +221,8 @@ const CreateProfile = ({ createProfile, history }) => {
   );
 };
 CreateProfile.propTypes = {
-  createProfile: PropTypes.func.isRequired
+  createProfile: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired
 };
 
 export default connect(

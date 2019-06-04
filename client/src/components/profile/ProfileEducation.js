@@ -4,7 +4,7 @@ import Moment from 'react-moment';
 import moment from 'moment';
 
 const ProfileEducation = ({
-  education: { school, degree, fieldOfStudy, current, to, from, description }
+  education: { school, degree, fieldOfStudy, to, from, description }
 }) => {
   return (
     <div>

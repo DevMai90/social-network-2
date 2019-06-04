@@ -120,7 +120,8 @@ const AddExperience = ({ addExperience, history }) => {
 };
 
 AddExperience.propTypes = {
-  addExperience: PropTypes.func.isRequired
+  addExperience: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired
 };
 
 export default connect(

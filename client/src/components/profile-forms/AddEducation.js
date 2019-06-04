@@ -128,7 +128,8 @@ const AddEducation = ({ addEducation, history }) => {
 };
 
 AddEducation.propTypes = {
-  addEducation: PropTypes.func.isRequired
+  addEducation: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired
 };
 
 export default connect(

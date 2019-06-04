@@ -155,7 +155,9 @@ const EditExperience = ({
 EditExperience.propTypes = {
   updateExperience: PropTypes.func.isRequired,
   getExperience: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired
+  profile: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

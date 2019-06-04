@@ -5,7 +5,6 @@ import Moment from 'react-moment';
 import { connect } from 'react-redux';
 import { addLike, removeLike, deletePost } from '../../actions/post';
 
-// Todo: Edit post if user is authenticated.
 const PostItem = ({
   auth,
   post: { _id, user, text, name, avatar, likes, comments, date, edited },

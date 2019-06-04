@@ -162,7 +162,11 @@ const EditEducation = ({
 };
 
 EditEducation.propTypes = {
-  profile: PropTypes.object.isRequired
+  profile: PropTypes.object.isRequired,
+  getEducation: PropTypes.func.isRequired,
+  updateEducation: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

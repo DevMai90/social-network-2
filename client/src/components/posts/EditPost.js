@@ -66,7 +66,9 @@ const EditPost = ({
 EditPost.propTypes = {
   getPost: PropTypes.func.isRequired,
   updatePost: PropTypes.func.isRequired,
-  post: PropTypes.object.isRequired
+  post: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

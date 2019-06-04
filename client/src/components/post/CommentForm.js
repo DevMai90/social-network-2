@@ -35,7 +35,8 @@ const CommentForm = ({ addComment, postId }) => {
 };
 
 CommentForm.propTypes = {
-  addComment: PropTypes.func.isRequired
+  addComment: PropTypes.func.isRequired,
+  postId: PropTypes.string.isRequired
 };
 
 export default connect(
