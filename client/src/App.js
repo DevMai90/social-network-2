@@ -5,6 +5,7 @@ import Landing from './components/layout/Landing';
 import LandingJob from './components/layout/LandingJob';
 import Routes from './components/routing/Routes';
 // Redux
+import Footer from './components/layout/Footer';
 import { Provider } from 'react-redux';
 import store from './store';
 import { loadUser } from './actions/auth';
@@ -32,6 +33,7 @@ const App = () => {
             <Route exact path="/register/jobs" component={LandingJob} />
             <Route component={Routes} />
           </Switch>
+          <Footer />
         </Fragment>
       </Router>
     </Provider>

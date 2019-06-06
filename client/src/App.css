@@ -74,6 +74,10 @@ img {
   color: var(--dark-color);
 }
 
+.text-light {
+  color: var(--light-color);
+}
+
 /* Padding */
 .p {
   padding: 0.5rem;
@@ -98,6 +102,10 @@ img {
 }
 .py-3 {
   padding: 3rem 0;
+}
+
+.px {
+  padding: 0 0.5rem 0 0.5rem;
 }
 
 /* Margin */
@@ -599,4 +607,17 @@ button {
   padding: 1rem;
   line-height: 1.8;
   margin-bottom: 1rem;
+}
+
+/* Footer */
+.footer {
+  display: flex;
+  justify-content: center;
+  padding: 0.2rem;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  bottom: 0;
+  border-top: solid 1px var(--primary-color);
+  opacity: 0.9;
 }
