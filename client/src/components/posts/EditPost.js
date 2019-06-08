@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getPost, updatePost } from '../../actions/post';
 import Spinner from '../layout/Spinner';
+import { POST_ERROR } from '../../actions/types';
 
 const EditPost = ({
   getPost,
@@ -31,7 +32,7 @@ const EditPost = ({
   };
   return (
     <Fragment>
-      {loading ? (
+      {loading || !user ? (
         <Spinner />
       ) : (
         <Fragment>
@@ -50,6 +51,7 @@ const EditPost = ({
                 required
                 value={text}
                 onChange={e => setText(e.target.value)}
+                disabled={user._id === post.user ? false : true}
               />
               {loading || !user
                 ? null
