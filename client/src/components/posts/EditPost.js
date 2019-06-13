@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getPost, updatePost } from '../../actions/post';
 import Spinner from '../layout/Spinner';
-import { POST_ERROR } from '../../actions/types';
 
 const EditPost = ({
   getPost,
@@ -53,15 +52,13 @@ const EditPost = ({
                 onChange={e => setText(e.target.value)}
                 disabled={user._id === post.user ? false : true}
               />
-              {loading || !user
-                ? null
-                : user._id === post.user && (
-                    <input
-                      type="submit"
-                      className="btn btn-dark my-1"
-                      value="Update Post"
-                    />
-                  )}
+              {user._id === post.user && (
+                <input
+                  type="submit"
+                  className="btn btn-dark my-1"
+                  value="Update Post"
+                />
+              )}
             </form>
           </div>
         </Fragment>
