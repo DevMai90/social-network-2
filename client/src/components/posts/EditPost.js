@@ -32,7 +32,7 @@ const EditPost = ({
   };
   return (
     <Fragment>
-      {loading || !user ? (
+      {loading || !user || !post ? (
         <Spinner />
       ) : (
         <Fragment>
