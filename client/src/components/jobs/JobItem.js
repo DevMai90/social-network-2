@@ -22,7 +22,7 @@ const JobItem = ({
   }
 }) => {
   return (
-    <div className="jobs bg-light">
+    <div className="jobs bg-white p-1 my-1">
       <div>
         <h2>{position}</h2>
         <p>
