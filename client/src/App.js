@@ -10,8 +10,13 @@ import { Provider } from 'react-redux';
 import store from './store';
 import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
+import { loadProgressBar } from 'axios-progress-bar';
 
 import './App.css';
+import 'axios-progress-bar/dist/nprogress.css';
+
+// Initialize axios-progress-bar
+loadProgressBar({ showSpinner: false });
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);

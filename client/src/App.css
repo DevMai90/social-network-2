@@ -621,3 +621,17 @@ button {
   border-top: solid 1px var(--primary-color);
   opacity: 0.9;
 }
+
+/* Axios Progress Bar */
+#nprogress .bar {
+  background: #17a2b8 !important;
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px #17a2b8, 0 0 5px #17a2b8 !important;
+}
+
+#nprogress .spinner-icon {
+  border-top-color: #17a2b8 !important;
+  border-left-color: #17a2b8 !important;
+}

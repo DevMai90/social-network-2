@@ -11,9 +11,6 @@ import {
 } from './types';
 import { setAlert } from './alert';
 import setAuthToken from '../utils/setAuthToken';
-import { loadProgressBar } from 'axios-progress-bar';
-
-loadProgressBar();
 
 // Load user
 export const loadUser = () => async dispatch => {
