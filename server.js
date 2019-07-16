@@ -2,6 +2,7 @@ const express = require('express');
 const connectDB = require('./config/db');
 const path = require('path');
 
+// Initialize express. Need a variable to hold express because it is not a default part of Node.
 const app = express();
 
 // Connect Database
@@ -16,6 +17,7 @@ app.use('/api/posts', require('./routes/api/posts'));
 app.use('/api/profile', require('./routes/api/profile'));
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/jobs', require('./routes/api/jobs'));
+app.use('/api/upload', require('./routes/api/upload'));
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
