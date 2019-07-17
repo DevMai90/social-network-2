@@ -5,6 +5,17 @@ const router = express.Router();
 const auth = require('../../middleware/auth');
 const { check, validationResult } = require('express-validator/check');
 
+// multer-s3
+const aws = require('aws-sdk');
+const multer = require('multer');
+const multerS3 = require('multer-s3');
+aws.config.update({
+  accessKeyId: config.get('accessKeyId'),
+  secretAccessKey: config.get('secretAccessKey'),
+  region: config.get('region')
+});
+const s3 = new aws.S3({});
+
 const Profile = require('../../models/Profile');
 const Post = require('../../models/Post');
 const User = require('../../models/User');
@@ -478,4 +489,60 @@ router.get('/github/:username', (req, res) => {
     res.status(500).send('Server Error');
   }
 });
+
+// @route   POST api/profile/resume
+// @desc    Upload resume
+// @access  Private
+router.post('/resume', auth, async (req, res) => {
+  // Multer-S3
+  const fileFilter = (req, file, cb) => {
+    if (
+      file.mimetype === 'application/msword' ||
+      file.mimetype ===
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ||
+      file.mimetype === 'applcation/pdf'
+    ) {
+      cb(null, true);
+    } else {
+      cb(
+        new Error('Invalid file type (only DOC, DOCX, or PDF allowed).'),
+        false
+      );
+    }
+  };
+  const upload = multer({
+    fileFilter,
+    storage: multerS3({
+      s3,
+      bucket: 'davidmulters3test',
+      metadata: (req, file, cb) => {
+        cb(null, { fieldName: 'file.fileName' });
+      },
+      acl: 'public-read',
+      key: (req, file, cb) => {
+        cb(null, req.user.id);
+      }
+    })
+  });
+
+  const resumeUpload = upload.single('resume');
+
+  try {
+    let profile = await Profile.findOne({ user: req.user.id });
+
+    resumeUpload(req, res, err => {
+      if (err) {
+        res.status(422).send({ errors: [{ msg: err.message }] });
+      } else {
+        profile.resume = req.file.location;
+        profile.save();
+        res.json(profile);
+      }
+    });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 module.exports = router;

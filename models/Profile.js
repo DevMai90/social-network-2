@@ -113,6 +113,9 @@ const ProfileSchema = new mongoose.Schema({
   views: {
     type: Number,
     default: 0
+  },
+  resume: {
+    type: String
   }
 });
 
