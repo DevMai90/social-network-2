@@ -500,7 +500,7 @@ router.post('/resume', auth, async (req, res) => {
       file.mimetype === 'application/msword' ||
       file.mimetype ===
         'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ||
-      file.mimetype === 'applcation/pdf'
+      file.mimetype === 'application/pdf'
     ) {
       cb(null, true);
     } else {
@@ -514,12 +514,16 @@ router.post('/resume', auth, async (req, res) => {
     fileFilter,
     storage: multerS3({
       s3,
-      bucket: 'davidmulters3test',
-      metadata: (req, file, cb) => {
-        cb(null, { fieldName: 'file.fileName' });
-      },
+      bucket: 'davidmulters3test/resume',
       acl: 'public-read',
+      metadata: (req, file, cb) => {
+        cb(null, {
+          mimetype: file.mimetype,
+          originalName: file.originalname
+        });
+      },
       key: (req, file, cb) => {
+        // First parameter is an error. Add fieldname?
         cb(null, req.user.id);
       }
     })
