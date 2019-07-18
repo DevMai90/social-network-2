@@ -12,7 +12,8 @@ const ProfileTop = ({
     githubusername,
     user: { name, avatar },
     date,
-    views
+    views,
+    resume
   }
 }) => {
   return (
@@ -68,6 +69,15 @@ const ProfileTop = ({
       <p>
         Member since <Moment format="MM/DD/YY">{date}</Moment>
       </p>
+      {resume && (
+        <p className="icons">
+          <a href={resume} target="_blank" rel="noopener noreferrer">
+            <span>
+              <i className="far fa-file-alt" /> View Resume
+            </span>
+          </a>
+        </p>
+      )}
     </div>
   );
 };

@@ -496,20 +496,10 @@ router.get('/github/:username', (req, res) => {
 router.post('/resume', auth, async (req, res) => {
   // Multer-S3
   const fileFilter = (req, file, cb) => {
-    if (
-      file.mimetype === 'application/msword' ||
-      file.mimetype ===
-        'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ||
-      file.mimetype === 'application/pdf'
-    ) {
-      cb(null, true);
-    } else {
-      cb(
-        new Error('Invalid file type (only DOC, DOCX, or PDF allowed).'),
-        false
-      );
-    }
+    if (file.mimetype === 'application/pdf') cb(null, true);
+    else cb(new Error('Invalid file type. Please upload PDF.'), false);
   };
+
   const upload = multer({
     fileFilter,
     storage: multerS3({
@@ -522,6 +512,7 @@ router.post('/resume', auth, async (req, res) => {
           originalName: file.originalname
         });
       },
+      contentType: multerS3.AUTO_CONTENT_TYPE,
       key: (req, file, cb) => {
         // First parameter is an error. Add fieldname?
         cb(null, req.user.id);
