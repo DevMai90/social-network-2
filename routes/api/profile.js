@@ -75,7 +75,9 @@ router.post(
       twitter,
       linkedin,
       instagram,
-      facebook
+      facebook,
+      resume,
+      newResume
     } = req.body;
 
     // Build profile object
@@ -532,6 +534,7 @@ router.post('/resume', auth, async (req, res) => {
         profile.resume = req.file.location;
         profile.save();
         res.json(profile);
+        console.log(req.file);
       }
     });
   } catch (err) {

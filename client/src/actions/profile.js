@@ -12,7 +12,8 @@ import {
   GET_EXPERIENCE,
   UPDATE_EXPERIENCE,
   GET_EDUCATION,
-  UPDATE_EDUCATION
+  UPDATE_EDUCATION,
+  DELETE_RESUME
 } from './types';
 
 // Get current user's profile
@@ -332,6 +333,25 @@ export const deleteAccount = () => async dispatch => {
     });
 
     dispatch(setAlert('You account has been permanently deleted'));
+  } catch (err) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+
+// Delete Resume
+export const deleteResume = () => async dispatch => {
+  try {
+    const res = await axios.delete('/api/profile/resume');
+
+    dispatch({
+      type: UPDATE_PROFILE,
+      payload: res.data
+    });
+
+    dispatch(setAlert('Your resume has been deleted'));
   } catch (err) {
     dispatch({
       type: PROFILE_ERROR,

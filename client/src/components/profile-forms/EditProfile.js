@@ -49,6 +49,7 @@ const EditProfile = ({
     });
   }, [loading, getCurrentProfile]);
 
+  // Destructure State
   const {
     company,
     website,
@@ -171,20 +172,6 @@ const EditProfile = ({
           <small className="form-text">Tell us a little about yourself</small>
         </div>
 
-        <div className="my-2">
-          {resume ? (
-            <a
-              href={resume}
-              target="_blank"
-              className="btn btn-light"
-              rel="noopener noreferrer"
-            >
-              View Current Resume
-            </a>
-          ) : (
-            <p>No resume uploaded!</p>
-          )}
-        </div>
         <div className="my-2">
           <button
             onClick={() => toggleSocialInputs(!displaySocialInputs)}
