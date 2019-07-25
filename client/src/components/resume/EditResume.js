@@ -1,7 +1,9 @@
 import React, { Fragment, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Spinner from '../layout/Spinner';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
 import {
   getCurrentProfile,
   deleteResume,
@@ -89,6 +91,9 @@ const EditResume = ({
         >
           Upload Resume
         </button>
+        <Link className="btn btn-light my-1" to="/dashboard">
+          Go Back
+        </Link>
       </form>
     </Fragment>
   );
