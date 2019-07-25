@@ -3,18 +3,8 @@ const request = require('request');
 const config = require('config');
 const router = express.Router();
 const auth = require('../../middleware/auth');
+const upload = require('../../middleware/multer');
 const { check, validationResult } = require('express-validator/check');
-
-// multer-s3
-const aws = require('aws-sdk');
-const multer = require('multer');
-const multerS3 = require('multer-s3');
-aws.config.update({
-  accessKeyId: config.get('accessKeyId'),
-  secretAccessKey: config.get('secretAccessKey'),
-  region: config.get('region')
-});
-const s3 = new aws.S3({});
 
 const Profile = require('../../models/Profile');
 const Post = require('../../models/Post');
@@ -495,35 +485,10 @@ router.get('/github/:username', (req, res) => {
 // @route   POST api/profile/resume
 // @desc    Upload resume
 // @access  Private
-router.post('/resume', auth, async (req, res) => {
-  // Multer-S3
-  const fileFilter = (req, file, cb) => {
-    if (file.mimetype === 'application/pdf') cb(null, true);
-    else cb(new Error('Invalid file type. Please upload PDF.'), false);
-  };
-
-  const upload = multer({
-    fileFilter,
-    storage: multerS3({
-      s3,
-      bucket: 'davidmulters3test/resume',
-      acl: 'public-read',
-      metadata: (req, file, cb) => {
-        cb(null, {
-          mimetype: file.mimetype,
-          originalName: file.originalname
-        });
-      },
-      contentType: multerS3.AUTO_CONTENT_TYPE,
-      key: (req, file, cb) => {
-        // First parameter is an error. Add fieldname?
-        cb(null, req.user.id);
-      }
-    })
-  });
-
+router.post('/resume', [auth, upload.single('resume')], async (req, res) => {
+  // req should have access to the file property now.
+  // 'resume' should match the name of the file field being sent as part of the form submission
   const resumeUpload = upload.single('resume');
-
   try {
     let profile = await Profile.findOne({ user: req.user.id });
 
@@ -534,7 +499,6 @@ router.post('/resume', auth, async (req, res) => {
         profile.resume = req.file.location;
         profile.save();
         res.json(profile);
-        console.log(req.file);
       }
     });
   } catch (err) {

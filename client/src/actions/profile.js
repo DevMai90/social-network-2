@@ -341,6 +341,47 @@ export const deleteAccount = () => async dispatch => {
   }
 };
 
+// Upload Resume
+export const uploadResume = formData => async dispatch => {
+  try {
+    const res = await axios.post('/api/profile/resume', formData);
+
+    res.send();
+
+    console.log(res);
+  } catch (err) {
+    console.log(err);
+  }
+  // try {
+  //   const config = {
+  //     headers: {
+  //       'Content-Type': 'multipart/form-data'
+  //     }
+  //   };
+
+  //   // const formData = new FormData(resume);
+  //   // formData.append('text', resume.text);
+  //   // formData.append('resume', resume.resume);
+
+  //   const res = await axios.post('/api/profile/resume', formData, config);
+
+  //   console.log('Test1');
+  //   console.log(res);
+  //   dispatch({
+  //     type: UPDATE_PROFILE,
+  //     payload: res.data
+  //   });
+
+  //   dispatch(setAlert('Your resume has been uploaded'));
+  // } catch (err) {
+  //   // dispatch({
+  //   //   type: PROFILE_ERROR,
+  //   //   payload: { msg: err.response.statusText, status: err.response.status }
+  //   // });
+  //   console.log(err);
+  // }
+};
+
 // Delete Resume
 export const deleteResume = () => async dispatch => {
   try {
