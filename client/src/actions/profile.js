@@ -12,8 +12,7 @@ import {
   GET_EXPERIENCE,
   UPDATE_EXPERIENCE,
   GET_EDUCATION,
-  UPDATE_EDUCATION,
-  DELETE_RESUME
+  UPDATE_EDUCATION
 } from './types';
 
 // Get current user's profile
@@ -346,40 +345,24 @@ export const uploadResume = formData => async dispatch => {
   try {
     const res = await axios.post('/api/profile/resume', formData);
 
-    res.send();
+    dispatch({
+      type: UPDATE_PROFILE,
+      payload: res.data
+    });
 
-    console.log(res);
+    dispatch(setAlert('Your resume has been uploaded', 'success'));
   } catch (err) {
-    console.log(err);
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
+    }
+
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
   }
-  // try {
-  //   const config = {
-  //     headers: {
-  //       'Content-Type': 'multipart/form-data'
-  //     }
-  //   };
-
-  //   // const formData = new FormData(resume);
-  //   // formData.append('text', resume.text);
-  //   // formData.append('resume', resume.resume);
-
-  //   const res = await axios.post('/api/profile/resume', formData, config);
-
-  //   console.log('Test1');
-  //   console.log(res);
-  //   dispatch({
-  //     type: UPDATE_PROFILE,
-  //     payload: res.data
-  //   });
-
-  //   dispatch(setAlert('Your resume has been uploaded'));
-  // } catch (err) {
-  //   // dispatch({
-  //   //   type: PROFILE_ERROR,
-  //   //   payload: { msg: err.response.statusText, status: err.response.status }
-  //   // });
-  //   console.log(err);
-  // }
 };
 
 // Delete Resume

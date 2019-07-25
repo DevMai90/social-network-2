@@ -1,5 +1,4 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import Spinner from '../layout/Spinner';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -21,11 +20,13 @@ const EditResume = ({
 
   // Component State
   const [resume, setResume] = useState(undefined);
-  const [description, setDescription] = useState("Someone's resume");
+  const [description, setDescription] = useState(undefined);
 
   const onChange = e => {
     setResume(e.target.files[0]);
+    setDescription(profile.id);
   };
+
   const onSubmit = e => {
     e.preventDefault();
 
@@ -69,26 +70,26 @@ const EditResume = ({
       ) : (
         <Fragment>
           <p>No resume uploaded!</p>
-          <form className="form" action="submit">
-            <div className="form-group">
-              <input
-                type="file"
-                className="form-control-file"
-                name="resume"
-                onChange={e => onChange(e)}
-              />
-              <small className="text-muted">*PDF format only</small>
-            </div>
-            <button
-              className="btn btn-primary"
-              type="button"
-              onClick={e => onSubmit(e)}
-            >
-              Upload Resume
-            </button>
-          </form>
         </Fragment>
       )}
+      <form className="form" action="submit">
+        <div className="form-group">
+          <input
+            type="file"
+            className="form-control-file"
+            name="resume"
+            onChange={e => onChange(e)}
+          />
+          <small className="text-muted">*PDF format only</small>
+        </div>
+        <button
+          className="btn btn-primary"
+          type="button"
+          onClick={e => onSubmit(e)}
+        >
+          Upload Resume
+        </button>
+      </form>
     </Fragment>
   );
 };

@@ -65,9 +65,7 @@ router.post(
       twitter,
       linkedin,
       instagram,
-      facebook,
-      resume,
-      newResume
+      facebook
     } = req.body;
 
     // Build profile object
@@ -489,6 +487,18 @@ router.post('/resume', [auth, upload.single('resume')], async (req, res) => {
   // req should have access to the file property now.
   // 'resume' should match the name of the file field being sent as part of the form submission
   const resumeUpload = upload.single('resume');
+  if (!req.file) {
+    return res
+      .status(400)
+      .json({ errors: [{ msg: 'Resume input field required' }] });
+  }
+
+  if (req.file.mimetype !== 'application/pdf') {
+    return res
+      .status(400)
+      .json({ errors: [{ msg: 'Resume must be uploaded in PDF format' }] });
+  }
+
   try {
     let profile = await Profile.findOne({ user: req.user.id });
 
@@ -502,7 +512,7 @@ router.post('/resume', [auth, upload.single('resume')], async (req, res) => {
       }
     });
   } catch (err) {
-    console.error(err.message);
+    // console.error(err);
     res.status(500).send('Server Error');
   }
 });

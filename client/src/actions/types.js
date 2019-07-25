@@ -30,4 +30,3 @@ export const UPDATE_POST = 'UPDATE_POST';
 export const GET_JOBS = 'GET_JOBS';
 export const JOB_ERROR = 'JOB_ERROR';
 export const ADD_JOB = 'ADD_JOB';
-export const DELETE_RESUME = 'DELETE_RESUME';

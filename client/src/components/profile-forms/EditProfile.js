@@ -62,8 +62,7 @@ const EditProfile = ({
     twitter,
     linkedin,
     instagram,
-    facebook,
-    resume
+    facebook
   } = formData;
 
   const onChange = e => {
