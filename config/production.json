@@ -2,5 +2,8 @@
   "mongoURI": "mongodb+srv://DavidMai:DavidMai@devconnector-ns2qz.mongodb.net/test?retryWrites=true",
   "jwtSecret": "chickens",
   "githubClientId": "47cffb8fd638da58f196",
-  "githubSecret": "97491cb2a22c8d65e8f24322705f9baa245ba92f"
+  "githubSecret": "97491cb2a22c8d65e8f24322705f9baa245ba92f",
+  "accessKeyId": "AKIAYPDRQPKDG77H34FA",
+  "secretAccessKey": "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",
+  "region": "us-west-1"
 }
