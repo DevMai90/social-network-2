@@ -11,7 +11,7 @@ connectDB();
 // Initialize bodyparser middleware. Allows us to get data from req.body
 app.use(express.json({ extended: false }));
 
-// Define Routes
+// Define Routes - mount route handlers from paths. A router instance is a complete middleware and routing system.
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/posts', require('./routes/api/posts'));
 app.use('/api/profile', require('./routes/api/profile'));
