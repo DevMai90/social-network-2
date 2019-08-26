@@ -15,6 +15,8 @@ const User = require('../../models/User');
 // @access  Private
 router.get('/me', auth, async (req, res) => {
   try {
+    // populate references documents from other collections.
+    // Look into user collection. Grab the name and avatar fields
     const profile = await Profile.findOne({ user: req.user.id }).populate(
       'user',
       ['name', 'avatar']
@@ -71,14 +73,23 @@ router.post(
     // Build profile object
     const profileFields = {};
     profileFields.user = req.user.id;
-    if (company) profileFields.company = company;
-    if (website) profileFields.website = website;
-    if (location) profileFields.location = location;
-    if (status) profileFields.status = status;
-    if (bio) profileFields.bio = bio;
-    if (githubusername) profileFields.githubusername = githubusername;
-    if (skills)
-      profileFields.skills = skills.split(',').map(skill => skill.trim());
+    for (field in req.body) {
+      if (req.body[field]) {
+        if (field === 'skills')
+          profileFields.skills = req.body[field]
+            .split(',')
+            .map(skill => skill.trim());
+        else profileFields[field] = req.body[field];
+      }
+    }
+    // if (company) profileFields.company = company;
+    // if (website) profileFields.website = website;
+    // if (location) profileFields.location = location;
+    // if (status) profileFields.status = status;
+    // if (bio) profileFields.bio = bio;
+    // if (githubusername) profileFields.githubusername = githubusername;
+    // if (skills)
+    //   profileFields.skills = skills.split(',').map(skill => skill.trim());
 
     // Build social object
     profileFields.social = {};

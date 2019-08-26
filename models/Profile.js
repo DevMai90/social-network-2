@@ -4,6 +4,7 @@ const ProfileSchema = new mongoose.Schema({
   // Reference the user model. Searches for the user document that matches id.
   user: {
     type: mongoose.Schema.Types.ObjectId,
+    // Tells Mongoose which model to use during population
     ref: 'user'
   },
   company: {
