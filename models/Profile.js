@@ -5,6 +5,7 @@ const ProfileSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     // Tells Mongoose which model to use during population
+    // Finds ObjectId from documents in the user model.
     ref: 'user'
   },
   company: {
